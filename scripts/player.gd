@@ -5,6 +5,7 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jump_audio: AudioStreamPlayer2D = $JumpSFX
 
 
 func _physics_process(delta: float) -> void:
@@ -15,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		if not jump_audio.playing:
+			jump_audio.play()
 
 	# Get input
 	var direction := Input.get_axis("move_left", "move_right")
