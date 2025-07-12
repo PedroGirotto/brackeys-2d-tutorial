@@ -2,18 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://dcm42arv70ja1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_mq4db"]
 
-[node name="WinCanvas" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="WinCanvas" type="CanvasLayer"]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 724.0
 stretch_mode = 3

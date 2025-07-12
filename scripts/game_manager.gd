@@ -13,3 +13,6 @@ func _ready() -> void:
 func add_point():
 	score = coins.get_child_count()
 	score_text.text = "Score: {score}".format({"score": str(score)})
+	
+	if score == 0:
+		add_child(win_canvas.instantiate())
