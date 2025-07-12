@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dxototn6fxb6q"]
+[gd_scene load_steps=22 format=4 uid="uid://dxototn6fxb6q"]
 
 [ext_resource type="Script" uid="uid://evvl6wq7w2pa" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="Script" uid="uid://bettiofotm6vx" path="res://scripts/game_manager.gd" id="1_u5sy4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bpns6iakmkkn5" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="FontFile" uid="uid://dcm42arv70ja1" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cs1oyfxhae3ns" path="res://scenes/platform.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://biwpb0lto4d4x" path="res://scenes/win_canvas.tscn" id="3_vtaks"]
 [ext_resource type="PackedScene" uid="uid://burk6qf8dqy3o" path="res://scenes/coin.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://tg7m2qr4tba6" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://dkj2xcwxksi62" path="res://scenes/slime.tscn" id="5_p57ef"]
@@ -309,6 +310,21 @@ texture = ExtResource("2_yqjtg")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(775, 252)]
+}
+
 [sub_resource type="Animation" id="Animation_lnu2h"]
 resource_name = "move"
 length = 1.5
@@ -326,7 +342,13 @@ tracks/0/keys = {
 "values": [Vector2(776, 252), Vector2(841, 252)]
 }
 
-[sub_resource type="Animation" id="Animation_lbhrr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iywne"]
+_data = {
+&"RESET": SubResource("Animation_lbhrr"),
+&"move": SubResource("Animation_lnu2h")
+}
+
+[sub_resource type="Animation" id="Animation_p57ef"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -338,13 +360,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(775, 252)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_iywne"]
-_data = {
-&"RESET": SubResource("Animation_lbhrr"),
-&"move": SubResource("Animation_lnu2h")
+"values": [Vector2(1120, 252)]
 }
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -364,21 +380,6 @@ tracks/0/keys = {
 "values": [Vector2(1120, 252), Vector2(1120, 124)]
 }
 
-[sub_resource type="Animation" id="Animation_p57ef"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1120, 252)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u5sy4"]
 _data = {
 &"RESET": SubResource("Animation_p57ef"),
@@ -393,6 +394,7 @@ script = ExtResource("1_gee14")
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_u5sy4")
+win_canvas = ExtResource("3_vtaks")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -446,6 +448,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Coins" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="Coin" parent="Coins" instance=ExtResource("4_lbhrr")]
 position = Vector2(472, 268)

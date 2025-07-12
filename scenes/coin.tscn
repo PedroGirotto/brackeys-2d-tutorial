@@ -116,4 +116,5 @@ stream = ExtResource("3_11l1o")
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="finished" from="PickupSFX" to="." method="_on_audio_stream_player_2d_finished"]
